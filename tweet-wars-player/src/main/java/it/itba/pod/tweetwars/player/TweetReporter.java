@@ -18,7 +18,7 @@ public class TweetReporter extends ReceiverAdapter
     private GamePlayer player;
     private GameMaster gameMaster;
     private TweetsProvider tweetsProvider;
-    private Map<String, List<Status>> fakeTweets;
+    private Map<String, Map<Long, Status>> fakeTweets;
 
     public TweetReporter(GamePlayer player, GameMaster gameMaster, TweetsProvider tweetsProvider)
     {
@@ -31,7 +31,6 @@ public class TweetReporter extends ReceiverAdapter
     @Override
     public void receive(Message msg)
     {
-        System.out.println("Received: " + msg + "from" + ((Status) msg.getObject()).getSource());
         try
         {
             if (msg.getObject() instanceof Status)
@@ -63,15 +62,15 @@ public class TweetReporter extends ReceiverAdapter
 
     private void reportFake(Status tweet) throws RemoteException
     {
-        List<Status> playerFakeTweets = fakeTweets.get(tweet.getSource());
+        Map<Long, Status> playerFakeTweets = fakeTweets.get(tweet.getSource());
         if(playerFakeTweets == null)
         {
-            playerFakeTweets = new ArrayList<>();
+            playerFakeTweets = new HashMap<>();
             fakeTweets.put(tweet.getSource(), playerFakeTweets);
         }
-        playerFakeTweets.add(tweet);
+        playerFakeTweets.put(tweet.getId(), tweet);
         if (playerFakeTweets.size() >= GameMaster.MIN_FAKE_TWEETS_BATCH) {
-            gameMaster.reportFake(player, playerFakeTweets.toArray(new Status[1]));
+            gameMaster.reportFake(player, playerFakeTweets.values().toArray(new Status[1]));
         }
     }
 }

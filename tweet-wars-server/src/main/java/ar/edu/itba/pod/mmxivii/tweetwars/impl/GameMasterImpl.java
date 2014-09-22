@@ -42,13 +42,14 @@ public class GameMasterImpl implements GameMaster
 
 		players.put(player.getId(), new GamePlayerData(player, hash));
 
-        System.out.println("registering " + player.getId());
+        System.out.println("Registering " + player.getId());
 		tweetsProvider.delay();
 	}
 
 	@Override
 	public int tweetReceived(@Nonnull GamePlayer player, @Nonnull Status tweet) throws RemoteException
 	{
+        System.out.println(player.getId() + " resported tweet " + tweet.getId() + " from " + tweet.getSource());
 		//noinspection ConstantConditions
 		if (tweet == null) throw new NullPointerException(TWEET_FIELD);
 		final GamePlayerData playerData = getGamePlayerData(player);
@@ -93,7 +94,8 @@ public class GameMasterImpl implements GameMaster
 	@Override
 	public int reportFake(@Nonnull GamePlayer player, @Nonnull Status[] tweets) throws RemoteException
 	{
-		tweetsProvider.delay();
+        System.out.println(player.getId() + " resported fake " + tweets[0].getId() + " from " + tweets[0].getSource());
+        tweetsProvider.delay();
 		final GamePlayerData playerData = getGamePlayerData(player);
 		try {
 			if (tweets.length < MIN_FAKE_TWEETS_BATCH) throw new IllegalArgumentException("Invalid fake tweeets size");

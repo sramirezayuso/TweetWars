@@ -53,8 +53,8 @@ public class App
             FakeTweetGenerator fakeTweetGenerator = new FakeTweetGenerator(gamePlayer, hash, channel);
             TweetBroadcaster tweetBroadcaster = new TweetBroadcaster(tweetsProvider, gamePlayer, hash, channel);
 
-            scheduledExecutorService.scheduleWithFixedDelay(fakeTweetGenerator, 1l, 1l, TimeUnit.SECONDS);
-            scheduledExecutorService.scheduleWithFixedDelay(tweetBroadcaster,1l, 1l, TimeUnit.SECONDS);
+            scheduledExecutorService.scheduleWithFixedDelay(fakeTweetGenerator, 100l, 100l, TimeUnit.MILLISECONDS);
+            scheduledExecutorService.scheduleWithFixedDelay(tweetBroadcaster,100l, 100l, TimeUnit.MILLISECONDS);
             scheduledExecutorService.scheduleWithFixedDelay(new Runnable()
             {
                 @Override
@@ -62,14 +62,14 @@ public class App
                 {
                     try
                     {
-                        System.out.println(gameMaster.getScore(gamePlayer));
+                        System.out.println("Current Score: " + gameMaster.getScore(gamePlayer));
                     }
                     catch (RemoteException e)
                     {
                         System.err.println("Remote communication error while fetching Score");
                     }
                 }
-            }, 1l, 1l, TimeUnit.SECONDS);
+            }, 5l, 5l, TimeUnit.SECONDS);
         }
         catch (RemoteException | NotBoundException e)
         {
