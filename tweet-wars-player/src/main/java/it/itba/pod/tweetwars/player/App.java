@@ -53,8 +53,8 @@ public class App
             FakeTweetGenerator fakeTweetGenerator = new FakeTweetGenerator(gamePlayer, hash, channel);
             TweetBroadcaster tweetBroadcaster = new TweetBroadcaster(tweetsProvider, gamePlayer, hash, channel);
 
-            scheduledExecutorService.scheduleWithFixedDelay(fakeTweetGenerator, 100l, 100l, TimeUnit.MILLISECONDS);
-            scheduledExecutorService.scheduleWithFixedDelay(tweetBroadcaster,100l, 100l, TimeUnit.MILLISECONDS);
+            scheduledExecutorService.scheduleWithFixedDelay(fakeTweetGenerator, 1l, 1l, TimeUnit.SECONDS);
+            scheduledExecutorService.scheduleWithFixedDelay(tweetBroadcaster,1l, 1l, TimeUnit.SECONDS);
             scheduledExecutorService.scheduleWithFixedDelay(new Runnable()
             {
                 @Override
