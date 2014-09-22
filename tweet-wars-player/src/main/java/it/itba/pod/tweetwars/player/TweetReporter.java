@@ -8,9 +8,7 @@ import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class TweetReporter extends ReceiverAdapter
@@ -71,6 +69,7 @@ public class TweetReporter extends ReceiverAdapter
         playerFakeTweets.put(tweet.getId(), tweet);
         if (playerFakeTweets.size() >= GameMaster.MIN_FAKE_TWEETS_BATCH) {
             gameMaster.reportFake(player, playerFakeTweets.values().toArray(new Status[1]));
+            playerFakeTweets.clear();
         }
     }
 }

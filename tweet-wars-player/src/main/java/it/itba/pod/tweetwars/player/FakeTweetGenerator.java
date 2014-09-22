@@ -2,7 +2,6 @@ package it.itba.pod.tweetwars.player;
 
 import ar.edu.itba.pod.mmxivii.tweetwars.GamePlayer;
 import ar.edu.itba.pod.mmxivii.tweetwars.Status;
-import ar.edu.itba.pod.mmxivii.tweetwars.TweetsProvider;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 

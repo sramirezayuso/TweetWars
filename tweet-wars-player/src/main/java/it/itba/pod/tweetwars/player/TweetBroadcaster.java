@@ -1,13 +1,5 @@
-/*
-* (c) 2003-2014 MuleSoft, Inc. This software is protected under international copyright
-* law. All use of this software is subject to MuleSoft's Master Subscription Agreement
-* (or other master license agreement) separately entered into in writing between you and
-* MuleSoft. If such an agreement is not in place, you may not use the software.
-*/
-
 package it.itba.pod.tweetwars.player;
 
-import ar.edu.itba.pod.mmxivii.tweetwars.GameMaster;
 import ar.edu.itba.pod.mmxivii.tweetwars.GamePlayer;
 import ar.edu.itba.pod.mmxivii.tweetwars.Status;
 import ar.edu.itba.pod.mmxivii.tweetwars.TweetsProvider;
